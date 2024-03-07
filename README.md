@@ -1,4 +1,4 @@
-# python-currency-converter
+# python-react-currency-converter
 
 This is a simple Python program that converts one currency to another.
 
