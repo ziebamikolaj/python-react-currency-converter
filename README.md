@@ -7,14 +7,14 @@ This is a simple Python program that converts one currency to another.
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/ziebamikolaj/python-currency-converter.git
+git clone https://github.com/ziebamikolaj/python-react-currency-converter.git
 
 ```
 
 Navigate to the project directory:
 
 ```bash
-cd python-currency-converter
+cd python-react-currency-converter
 ```
 
 Install backend:
