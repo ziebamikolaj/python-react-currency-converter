@@ -31,10 +31,18 @@ const getCurrency = async () => {
 
 function App() {
   const [currency, setCurrency] = React.useState<Currency | null>(null);
+  const [error, setError] = React.useState<string | null>(null);
+
   useEffect(() => {
-    getCurrency().then((currency: Currency) => {
-      setCurrency(currency);
-    });
+    getCurrency()
+      .then((currency: Currency) => {
+        setCurrency(currency);
+      })
+      .catch(() => {
+        setError(
+          "Failed to fetch currency data. Please check your internet connection."
+        );
+      });
   }, []);
 
   const [inputCurrency, setInputCurrency] = React.useState<string>("pln");
@@ -62,6 +70,23 @@ function App() {
     }
   }, [inputCurrency, outputCurrency, inputValue, currency]);
 
+  // If there is no connection to the api then display error message
+  if (error) {
+    return (
+      <div className="text-red-500 bg-white p-4 rounded-md shadow-md">
+        {error}
+      </div>
+    );
+  }
+
+  if (!currency) {
+    return (
+      <div className="flex items-center justify-center h-screen text-2xl text-blue-500">
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="absolute">
@@ -77,26 +102,26 @@ function App() {
               }
             ></Input>
             <Select onValueChange={setInputCurrency}>
-              <SelectTrigger className="w-[6rem]">
+              <SelectTrigger className="w-[10rem]">
                 <SelectValue placeholder="PLN" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="pln">PLN</SelectItem>
                 <SelectItem value="usd">USD</SelectItem>
-                <SelectItem value="gold">GOLD</SelectItem>
+                <SelectItem value="gold">GOLD (kg)</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="flex">
             <Input disabled value={converted}></Input>
             <Select onValueChange={setOutputCurrency}>
-              <SelectTrigger className="w-[6rem]">
+              <SelectTrigger className="w-[10rem]">
                 <SelectValue placeholder="USD" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="pln">PLN</SelectItem>
                 <SelectItem value="usd">USD</SelectItem>
-                <SelectItem value="gold">GOLD</SelectItem>
+                <SelectItem value="gold">GOLD (kg)</SelectItem>
               </SelectContent>
             </Select>
           </div>

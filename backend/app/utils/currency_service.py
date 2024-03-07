@@ -33,7 +33,7 @@ class CurrencyService:
         dollar_price = dollar_price_response.json()["rates"][0]["mid"]
         gold_rate = gold_rate_response.json()[0]["cena"]
         
-        self.current_rate = CurrencyRate(pln=1.0, usd=dollar_price, gold=gold_rate)
+        self.current_rate = CurrencyRate(pln=1.0, usd=dollar_price, gold=gold_rate * 1000)
         self.last_fetch = datetime.datetime.now()
         
         logging.info("Fetched new rates: %s", self.current_rate) 
