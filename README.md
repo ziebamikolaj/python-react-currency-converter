@@ -31,8 +31,6 @@ Install frontend:
 cd ..
 cd frontend
 npm install
-\# Or
-yarn install
 ```
 
 ## Usage
