@@ -1,6 +1,6 @@
 # python-react-currency-converter
 
-This is a simple Python program that converts one currency to another.
+This is a simple react app with python api that converts one currency to another.
 
 ## Installation
 
